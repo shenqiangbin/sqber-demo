@@ -1,4 +1,4 @@
-package com.sqber.commonTool;
+package com.sqber.commonWeb;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpStatus;
@@ -40,7 +40,8 @@ public class HttpHelper {
             setHead(httpGet, headMap);
 
             CloseableHttpResponse response = httpclient.execute(httpGet);
-            return getResult(response);
+            String msg = String.format("url:%s;headmap:%s", url, JSONUtil.toString(headMap));
+            return getResult(response, msg);
         } finally {
             httpclient.close();
         }
@@ -62,7 +63,8 @@ public class HttpHelper {
 
             setPostParams(httpPost, paramsMap);
             CloseableHttpResponse response = httpclient.execute(httpPost);
-            return getResult(response);
+            String msg = String.format("url:%s;param:%s;headmap:%s", url, JSONUtil.toString(paramsMap), JSONUtil.toString(headMap));
+            return getResult(response, msg);
         } finally {
             httpclient.close();
         }
@@ -79,7 +81,8 @@ public class HttpHelper {
             httpPost.setEntity(se);
 
             CloseableHttpResponse response = httpclient.execute(httpPost);
-            return getResult(response);
+            String msg = String.format("url:%s;param:%s;headmap:%s", url, json, JSONUtil.toString(headMap));
+            return getResult(response, msg);
         } finally {
             httpclient.close();
         }
@@ -116,7 +119,7 @@ public class HttpHelper {
             httpPost.setEntity(reqEntity);
 
             CloseableHttpResponse response = httpclient.execute(httpPost);
-            return getResult(response);
+            return getResult(response, "");
         } finally {
             httpclient.close();
         }
@@ -124,6 +127,7 @@ public class HttpHelper {
 
     /**
      * 下载文件到本地
+     *
      * @param url
      * @param headMap
      * @param filePath
@@ -219,15 +223,18 @@ public class HttpHelper {
      * @return
      * @throws IOException
      */
-    private static String getResult(CloseableHttpResponse response) throws IOException {
+    private static String getResult(CloseableHttpResponse response, String msg) throws IOException {
         String responseContent = null;
         try {
-            if (response.getStatusLine().getStatusCode() != HttpStatus.SC_OK) {
-                throw new IOException("状态码不是200:" + response.getStatusLine().getStatusCode());
-            }
+
             HttpEntity entity = response.getEntity();
             responseContent = EntityUtils.toString(response.getEntity(), "UTF-8");
             EntityUtils.consume(entity);
+
+            if (response.getStatusLine().getStatusCode() != HttpStatus.SC_OK) {
+                throw new IOException(msg + "\r\n 状态码为:" + response.getStatusLine().getStatusCode() + "\r\n" + responseContent);
+            }
+
         } finally {
             response.close();
         }
