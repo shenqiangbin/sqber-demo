@@ -1,4 +1,4 @@
-package com.sqber.commonWeb;
+package com.sqber.commonTool;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;

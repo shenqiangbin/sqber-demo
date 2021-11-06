@@ -1,4 +1,4 @@
-package com.sqber.commonWeb;
+package com.sqber.commonTool;
 
 import java.net.URLEncoder;
 import java.security.Key;

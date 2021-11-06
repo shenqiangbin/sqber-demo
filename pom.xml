@@ -13,6 +13,7 @@
         <module>spring-log4j-demo</module>
         <module>cnki-dianzi-demo</module>
         <module>common-tool</module>
+        <module>common-web</module>
     </modules>
 
     <properties>

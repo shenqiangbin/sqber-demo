@@ -1,4 +1,4 @@
-package com.sqber.commonWeb;
+package com.sqber.commonTool;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpStatus;
