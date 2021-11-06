@@ -1,6 +1,8 @@
 package com.sqber.log4jdemo.controller;
 
+import com.sqber.commonTool.myenum.IEnum;
 import com.sqber.commonWeb.BaseResponse;
+import com.sqber.log4jdemo.myenum.CheckInfoSyncState;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -31,6 +33,7 @@ public class DefaultController {
 
     /**
      * 里面会抛 RunTimeException 的
+     *
      * @return
      */
     @GetMapping("/user")
@@ -42,6 +45,7 @@ public class DefaultController {
 
     /**
      * 一种是非运行时异常的
+     *
      * @return
      * @throws IOException
      */
@@ -49,6 +53,15 @@ public class DefaultController {
     public BaseResponse getUser2() throws IOException {
         throw new IOException("cannot read file");
         //return BaseResponse.success("tom");
+    }
+
+
+    @GetMapping("/testEnum")
+    public BaseResponse testEnum() {
+        CheckInfoSyncState state = IEnum.getEnumByVal(CheckInfoSyncState.class, 30);
+        int val = state.getValue();
+
+        return BaseResponse.success(val);
     }
 
 }
