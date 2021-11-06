@@ -10,15 +10,15 @@ import java.util.Map;
 public class Test {
 
     static final String ELE_URL_TOKEN = "http://e.dev.cnki.net/UserAuth/connect/token";
-    static final String ELE_URL_TOKEN_ONLINE = "http://sso.cnki.net/UserAuth/connect/token";
+    static final String ELE_URL_TOKEN_ONLINE = "";
 
-    static final String APP_ID = "0e65b4081f54421b";
-    static final String APP_ID_ONLINE = "0e65b4081f54421b";
-    static final String APP_SECRET = "91e4ed64c0fb491ca0ce654f81172c0f";
-    static final String APP_SECRET_ONLINE = "91e4ed64c0fb491ca0ce654f81172c0f";
+    static final String APP_ID = "";
+    static final String APP_ID_ONLINE = "";
+    static final String APP_SECRET = "";
+    static final String APP_SECRET_ONLINE = "";
 
     static final String USER_API_BASE = "http://e.dev.cnki.net/UserApi";
-    static final String USER_API_BASE_ONLINE = "http://sso.cnki.net/UserApi";
+    static final String USER_API_BASE_ONLINE = "";
 
     static boolean debug = true;
 
