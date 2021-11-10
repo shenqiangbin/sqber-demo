@@ -9,8 +9,9 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
+    <groupId>com.sqber</groupId>
     <artifactId>common-tool</artifactId>
-
+    <version>1.0-SNAPSHOT</version>
 
     <dependencies>
         <!-- HTTPClient  版本定义在 spring-boot-dependencies 中 -->
