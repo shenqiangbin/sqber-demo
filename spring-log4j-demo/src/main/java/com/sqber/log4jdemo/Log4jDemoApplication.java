@@ -6,8 +6,8 @@ import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
 @ComponentScan("com.sqber.log4jdemo, com.sqber.commonWeb")
-public class Application {
+public class Log4jDemoApplication {
     public static void main(String[] args) {
-        SpringApplication.run(Application.class, args);
+        SpringApplication.run(Log4jDemoApplication.class, args);
     }
 }

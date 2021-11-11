@@ -41,6 +41,14 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <version>${spring-boot.version}</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <!--把依赖的包都打包到生成的 jar 包中-->
+                            <goal>repackage</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
             <!--添加配置跳过测试-->
             <plugin>
@@ -51,6 +59,8 @@
                     <skipTests>true</skipTests>
                 </configuration>
             </plugin>
+
+
         </plugins>
     </build>
 
