@@ -9,9 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.sqber</groupId>
     <artifactId>common-web</artifactId>
-    <version>1.0-SNAPSHOT</version>
 
     <dependencies>
         <!--引入AOP依赖-->

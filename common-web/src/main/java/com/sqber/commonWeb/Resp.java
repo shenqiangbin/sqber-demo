@@ -3,19 +3,18 @@ package com.sqber.commonWeb;
 /**
  * 统一结果类
  *
- * @param <T>
  */
-public class Resp<T> {
+public class Resp {
 
     private static final int SUCCESS = 200;
     private static final int ERROR = 500;
     private static final int ValidateFailure = 410;
 
     private int code;
-    private T data;
+    private Object data;
     private String msg;
 
-    private Resp(int code, String msg, T data) {
+    private Resp(int code, String msg, Object data) {
         this.code = code;
         this.msg = msg;
         this.data = data;
@@ -79,7 +78,7 @@ public class Resp<T> {
      * @param <T>
      * @return
      */
-    public static <T> Resp success(T data, String msg) {
+    public static Resp success(Object data, String msg) {
         return new Resp(SUCCESS, msg, data);
     }
 
@@ -87,7 +86,7 @@ public class Resp<T> {
         return code;
     }
 
-    public T getData() {
+    public Object getData() {
         return data;
     }
 
