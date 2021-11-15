@@ -14,6 +14,7 @@
         <module>cnki-dianzi-demo</module>
         <module>common-tool</module>
         <module>common-web</module>
+        <module>sqber-nacos</module>
     </modules>
 
     <properties>
