@@ -40,7 +40,7 @@ public class CommonExcel {
     private Workbook wb = null;
     private IResultHandler resultHandler;
     private boolean debug = false;
-    private boolean firstRowHeader = true;
+    private boolean firstRowHeader;
     private String[] firstRow;
 
     public CommonExcel(String filePath, boolean firstRowHeader, String[] firstRow, IResultHandler handler) {

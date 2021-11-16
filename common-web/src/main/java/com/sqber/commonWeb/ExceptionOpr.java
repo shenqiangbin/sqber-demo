@@ -14,9 +14,9 @@ public class ExceptionOpr {
     private static final Logger LOGGER = LoggerFactory.getLogger(ExceptionOpr.class);
 
     @ExceptionHandler(Exception.class)
-    public Resp globleExceptionHandler(Exception e) {
+    public R globleExceptionHandler(Exception e) {
 
         LOGGER.error("error:", e);
-        return Resp.error(e.getMessage());
+        return R.error(e.getMessage());
     }
 }

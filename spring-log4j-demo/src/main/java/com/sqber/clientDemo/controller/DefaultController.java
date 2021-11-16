@@ -1,13 +1,11 @@
 package com.sqber.clientDemo.controller;
 
-import com.sqber.commonTool.JSONUtil;
 import com.sqber.commonTool.ListUtil;
 import com.sqber.commonTool.excel.CommonExcel;
-import com.sqber.commonTool.excel.ExcelValiException;
 import com.sqber.commonTool.excel.SaveResult;
 import com.sqber.commonTool.myenum.IEnum;
 import com.sqber.log4jdemo.model.SaleModel;
-import com.sqber.commonWeb.Resp;
+import com.sqber.commonWeb.R;
 import com.sqber.clientDemo.myenum.CheckInfoSyncState;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -25,18 +23,18 @@ public class DefaultController {
     }
 
     @GetMapping("/test")
-    public Resp test() {
-        return Resp.error("数据库连接失败");
+    public R test() {
+        return R.error("数据库连接失败");
     }
 
     @GetMapping("/test1")
-    public Resp test1() {
-        return Resp.success("this is msg");
+    public R test1() {
+        return R.success("this is msg");
     }
 
     @GetMapping("/test2")
-    public Resp test2() {
-        return Resp.warn("id值不能为空");
+    public R test2() {
+        return R.warn("id值不能为空");
     }
 
     /**
@@ -45,10 +43,10 @@ public class DefaultController {
      * @return
      */
     @GetMapping("/user")
-    public Resp getUser(String id) {
+    public R getUser(String id) {
         int i = 0;
         int result = 5 / i;
-        return Resp.success("tom");
+        return R.success("tom");
     }
 
     /**
@@ -58,41 +56,41 @@ public class DefaultController {
      * @throws IOException
      */
     @GetMapping("/user2")
-    public Resp getUser2() throws IOException {
+    public R getUser2() throws IOException {
         throw new IOException("cannot read file");
         //return Resp.success("tom");
     }
 
 
     @GetMapping("/testEnum")
-    public Resp testEnum() {
+    public R testEnum() {
         CheckInfoSyncState state = IEnum.getEnumByVal(CheckInfoSyncState.class, 30);
         int val = state.getValue();
 
-        return Resp.success(val);
+        return R.success(val);
     }
 
     @GetMapping("/testFile")
-    public Resp testFile() throws IOException, IllegalAccessException, InstantiationException {
+    public R testFile() throws IOException, IllegalAccessException, InstantiationException {
 
         String filePath = "D:\\code\\TPI\\大数据产品\\贵州大数据项目\\说明\\示例文件\\点排名地图测试数据.xlsx";
         CommonExcel commonExcel = CommonExcel.create(filePath, new String[]{"地区", "销售额", "经度", "维度"});
         SaveResult saveResult = commonExcel.handle();
 
         if (!saveResult.isSuccess()) {
-            return Resp.warn(saveResult.getMsg());
+            return R.warn(saveResult.getMsg());
         }
 
         List<List<String>> data = saveResult.getData();
         List<SaleModel> list = ListUtil.toList(data, SaleModel.class);
 
-        return Resp.success(list);
+        return R.success(list);
 
     }
 
 
     @GetMapping("/testFile2")
-    public Resp testFile2() throws IOException, IllegalAccessException, InstantiationException {
+    public R testFile2() throws IOException, IllegalAccessException, InstantiationException {
 
         List<List<String>> data2 = new ArrayList<>();
 
@@ -100,14 +98,14 @@ public class DefaultController {
         SaveResult saveResult = commonExcel.handle();
 
         if (!saveResult.isSuccess()) {
-            return Resp.error(saveResult.getMsg());
+            return R.error(saveResult.getMsg());
         }
 
         List<List<String>> data = saveResult.getData();
         boolean same = data.equals(data2);
         List<SaleModel> list = ListUtil.toList(data2, SaleModel.class);
 
-        return Resp.success(list);
+        return R.success(list);
 
     }
 
