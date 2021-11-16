@@ -74,45 +74,22 @@ public class DefaultController {
 
     @GetMapping("/testFile")
     public Resp testFile() throws IOException, IllegalAccessException, InstantiationException {
-        CommonExcel commonExcel = createCommonExcel();
+
+        String filePath = "D:\\code\\TPI\\大数据产品\\贵州大数据项目\\说明\\示例文件\\点排名地图测试数据.xlsx";
+        CommonExcel commonExcel = CommonExcel.create(filePath, new String[]{"地区", "销售额", "经度", "维度"});
         SaveResult saveResult = commonExcel.handle();
 
         if (!saveResult.isSuccess()) {
-            return Resp.error(saveResult.getMsg());
+            return Resp.warn(saveResult.getMsg());
         }
 
         List<List<String>> data = saveResult.getData();
         List<SaleModel> list = ListUtil.toList(data, SaleModel.class);
 
-        return Resp.success(JSONUtil.toString(list));
+        return Resp.success(list);
 
     }
 
-    private CommonExcel createCommonExcel() {
-        return CommonExcel.create("D:\\code\\TPI\\大数据产品\\贵州大数据项目\\说明\\示例文件\\点排名地图测试数据.xlsx", new CommonExcel.IResultHandler() {
-            @Override
-            public void validateFirstRow(String sheetName, List<String> rowVal) throws ExcelValiException {
-                // 这里是验证表头的逻辑
-                if (rowVal.size() != 4) {
-                    throw new ExcelValiException("表头和模板不符");
-                }
-
-                boolean ok = rowVal.get(0).equals("地区") &&
-                        rowVal.get(1).equals("销售额") &&
-                        rowVal.get(2).equals("经度") &&
-                        rowVal.get(3).equals("维度");
-
-                if (!ok) {
-                    throw new ExcelValiException("表头和模板不符");
-                }
-            }
-
-            @Override
-            public boolean store(List<String> rowVal, int rowIndex, int totalRow) {
-                return true;
-            }
-        });
-    }
 
     @GetMapping("/testFile2")
     public Resp testFile2() throws IOException, IllegalAccessException, InstantiationException {
@@ -130,36 +107,19 @@ public class DefaultController {
         boolean same = data.equals(data2);
         List<SaleModel> list = ListUtil.toList(data2, SaleModel.class);
 
-        return Resp.success(JSONUtil.toString(list));
+        return Resp.success(list);
 
     }
 
     private CommonExcel createCommonExcel2(List<List<String>> data) {
-        return CommonExcel.create("D:\\code\\TPI\\大数据产品\\贵州大数据项目\\说明\\示例文件\\点排名地图测试数据.xlsx", new CommonExcel.IResultHandler() {
-            @Override
-            public void validateFirstRow(String sheetName, List<String> rowVal) throws ExcelValiException {
-                // 这里是验证表头的逻辑
-                if (rowVal.size() != 4) {
-                    throw new ExcelValiException("表头和模板不符");
-                }
-
-                boolean ok = rowVal.get(0).equals("地区") &&
-                        rowVal.get(1).equals("销售额") &&
-                        rowVal.get(2).equals("经度") &&
-                        rowVal.get(3).equals("维度");
-
-                if (!ok) {
-                    throw new ExcelValiException("表头和模板不符");
-                }
-            }
-
-            @Override
-            public boolean store(List<String> rowVal, int rowIndex, int totalRow) {
-                data.add(rowVal);
-                System.out.println("当前进度：" + rowIndex + "/" + totalRow);
-                return true;
-            }
-        });
+        return CommonExcel.create(
+                "D:\\code\\TPI\\大数据产品\\贵州大数据项目\\说明\\示例文件\\点排名地图测试数据.xlsx",
+                new String[]{"地区", "销售额", "经度", "维度"},
+                (rowVal, rowIndex, totalRow) -> {
+                    data.add(rowVal);
+                    System.out.println("当前进度：" + rowIndex + "/" + totalRow);
+                    return true;
+                });
     }
 
 }
