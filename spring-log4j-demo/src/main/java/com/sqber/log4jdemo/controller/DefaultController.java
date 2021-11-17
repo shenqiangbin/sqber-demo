@@ -1,4 +1,4 @@
-package com.sqber.clientDemo.controller;
+package com.sqber.log4jdemo.controller;
 
 import com.sqber.commonTool.ListUtil;
 import com.sqber.commonTool.excel.CommonExcel;
@@ -6,7 +6,7 @@ import com.sqber.commonTool.excel.SaveResult;
 import com.sqber.commonTool.myenum.IEnum;
 import com.sqber.log4jdemo.model.SaleModel;
 import com.sqber.commonWeb.R;
-import com.sqber.clientDemo.myenum.CheckInfoSyncState;
+import com.sqber.log4jdemo.myenum.CheckInfoSyncState;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 

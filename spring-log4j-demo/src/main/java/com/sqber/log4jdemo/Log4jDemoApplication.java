@@ -1,4 +1,4 @@
-package com.sqber.clientDemo;
+package com.sqber.log4jdemo;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

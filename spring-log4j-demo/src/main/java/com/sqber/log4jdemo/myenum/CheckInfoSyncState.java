@@ -1,4 +1,4 @@
-package com.sqber.clientDemo.myenum;
+package com.sqber.log4jdemo.myenum;
 
 import com.sqber.commonTool.myenum.IEnum;
 
