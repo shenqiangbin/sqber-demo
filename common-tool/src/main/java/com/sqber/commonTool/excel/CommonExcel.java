@@ -144,12 +144,12 @@ public class CommonExcel {
 
     private void validateFirstRow(String sheetName, List<String> rowVal) throws ExcelValiException {
         if (firstRow.length != rowVal.size()) {
-            throw new ExcelValiException(sheetName + "表头和模板不符");
+            throw new ExcelValiException("sheet[" + sheetName + "]表头和模板不符");
         }
 
         for (int i = 0; i < rowVal.size(); i++) {
             if (!rowVal.get(i).equalsIgnoreCase(firstRow[i])) {
-                throw new ExcelValiException(sheetName + "表头和模板不符");
+                throw new ExcelValiException("sheet[" + sheetName + "]表头和模板不符");
             }
         }
     }
