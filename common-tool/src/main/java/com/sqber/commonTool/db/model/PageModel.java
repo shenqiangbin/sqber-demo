@@ -1,4 +1,4 @@
-package com.sqber.commonWeb;
+package com.sqber.commonTool.db.model;
 
 import com.github.pagehelper.PageInfo;
 

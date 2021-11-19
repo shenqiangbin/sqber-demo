@@ -1,16 +1,11 @@
 package com.sqber.dbdemo.controller;
 
 import com.sqber.commonTool.db.MyJdbc;
-import com.sqber.commonTool.db.impl.MyJdbcTemplate;
-import com.sqber.commonWeb.PageModel;
+import com.sqber.commonTool.db.model.PageModel;
 import com.sqber.commonWeb.R;
 import com.sqber.dbdemo.myenum.RecordStatus;
-import org.apache.poi.ss.formula.functions.T;
-import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.PreparedStatementCallback;
-import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.util.StringUtils;
@@ -20,14 +15,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.sqber.dbdemo.model.User;
 
-import javax.sql.DataSource;
-import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.SQLException;
 import java.sql.Statement;
-import java.text.MessageFormat;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 

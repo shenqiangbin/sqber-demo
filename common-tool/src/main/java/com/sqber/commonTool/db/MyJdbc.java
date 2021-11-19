@@ -1,5 +1,6 @@
 package com.sqber.commonTool.db;
 
+import com.sqber.commonTool.db.model.PageModel;
 import org.springframework.lang.Nullable;
 
 import java.util.List;
@@ -11,5 +12,5 @@ public interface MyJdbc {
 
     List<Map<String, Object>> queryForMap(String sql, @Nullable Object... args);
 
-//    <T> PageModel<T> pageQuery(Class<T> type, String sql, String sumSql, int pageIndex, int pageSize, @Nullable Object... args);
+    <T> PageModel<T> pageQuery(Class<T> type, String sql, String sumSql, int pageIndex, int pageSize, @Nullable Object... args);
 }

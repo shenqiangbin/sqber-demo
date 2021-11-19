@@ -1,6 +1,7 @@
 package com.sqber.commonTool.db.impl;
 
 import com.sqber.commonTool.db.MyJdbc;
+import com.sqber.commonTool.db.model.PageModel;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -26,6 +27,15 @@ public class MyJdbcTemplate implements MyJdbc {
     @Override
     public List<Map<String, Object>> queryForMap(String sql, @Nullable Object... args) {
         return jdbcTemplate.queryForList(sql, args);
+    }
+
+    @Override
+    public <T> PageModel<T> pageQuery(Class<T> type, String sql, String sumSql, int pageIndex, int pageSize, @Nullable Object... args) {
+
+        for(Object arg : args){
+
+        }
+        return null;
     }
 
 }
