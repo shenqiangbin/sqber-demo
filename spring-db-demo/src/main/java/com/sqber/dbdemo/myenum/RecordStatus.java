@@ -1,16 +1,16 @@
-package com.sqber.log4jdemo.myenum;
+package com.sqber.dbdemo.myenum;
 
 import com.sqber.commonTool.myenum.IEnum;
 
-public enum CheckInfoSyncState implements IEnum {
-    DEFAULT_VAL("默认值", 0),
-    SUCCESS("成功", 20);
+public enum RecordStatus implements IEnum {
+    EXISTS("未删除", 1),
+    DELETED("删除", 0);
 
     private final String name;
 
     private Integer value;
 
-    private CheckInfoSyncState(String name, Integer value) {
+    private RecordStatus(String name, Integer value) {
         this.name = name;
         this.value = value;
     }

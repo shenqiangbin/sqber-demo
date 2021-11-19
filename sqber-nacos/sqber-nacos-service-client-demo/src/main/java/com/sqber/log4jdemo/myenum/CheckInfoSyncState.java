@@ -21,7 +21,7 @@ public enum CheckInfoSyncState implements IEnum {
     }
 
     @Override
-    public Integer getValue() {
+    public Integer getVal() {
         return this.value;
     }
 }

@@ -1,12 +1,12 @@
-package com.sqber.log4jdemo.controller;
+package com.sqber.dbdemo.controller;
 
 import com.sqber.commonTool.ListUtil;
 import com.sqber.commonTool.excel.CommonExcel;
 import com.sqber.commonTool.excel.SaveResult;
 import com.sqber.commonTool.myenum.IEnum;
-import com.sqber.log4jdemo.model.SaleModel;
+import com.sqber.dbdemo.model.SaleModel;
 import com.sqber.commonWeb.R;
-import com.sqber.log4jdemo.myenum.CheckInfoSyncState;
+import com.sqber.dbdemo.myenum.CheckInfoSyncState;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -19,7 +19,7 @@ public class DefaultController {
 
     @GetMapping("/")
     public String index() {
-        return "log index";
+        return "spring-db-demo";
     }
 
     @GetMapping("/test")

@@ -59,7 +59,7 @@ public class DefaultController {
     @GetMapping("/testEnum")
     public R testEnum() {
         CheckInfoSyncState state = IEnum.getEnumByVal(CheckInfoSyncState.class, 30);
-        int val = state.getValue();
+        int val = state.getVal();
 
         return R.success(val);
     }
