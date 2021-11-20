@@ -18,13 +18,12 @@ public class SqlWorkerFactory {
             throw new RuntimeException("get driver class faild:" + throwables.getMessage());
         }
         switch (driverClassName) {
-            case MyJdbc.DRIVER_MSSQL:
-            case MyJdbc.DRIVER_MSSQL8:
+            case MyJdbc.DRIVER_MYSQL:
                 return new SqlWorker2MySql();
             case MyJdbc.DRIVER_POSTGRE:
                 return new SqlWorker2Postgre();
         }
-        throw new RuntimeException("not known driver:" + driverClassName);
+        throw new RuntimeException("unknown driver:" + driverClassName);
     }
 
     private static String getDirverClassName(DataSource dataSource) throws SQLException {

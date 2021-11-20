@@ -37,20 +37,14 @@ public class JdbcController {
     }
 
     // query：查询所有（比如用在下拉列表）
-    @GetMapping("/t1")
-    public R t1() {
+    @GetMapping("/queryAll")
+    public R queryAll() {
         String sql = "select * from user where status = ?";
         Object[] args = {RecordStatus.EXISTS.getVal()};
         List<User> users = jdbcTemplate.query(sql, args, BeanPropertyRowMapper.newInstance(User.class));
-        List<Map<String, Object>> list = jdbcTemplate.queryForList(sql, args);
+        //List<Map<String, Object>> users = jdbcTemplate.queryForList(sql, args);
         return R.success(users);
     }
-
-    // 这个抽离一个
-    //public <T> List<T> query(String sql, Object[] args, Class<T> type);
-
-
-
 
     // query：分页查询（我们可以对查询进一步封装）
     @GetMapping("/pageQuery")

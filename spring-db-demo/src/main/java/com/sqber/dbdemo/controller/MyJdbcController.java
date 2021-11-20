@@ -1,6 +1,7 @@
 package com.sqber.dbdemo.controller;
 
 import com.sqber.commonTool.db.MyJdbc;
+import com.sqber.commonTool.db.model.PageModel;
 import com.sqber.commonWeb.R;
 import com.sqber.dbdemo.model.User;
 import com.sqber.dbdemo.myenum.RecordStatus;
@@ -21,18 +22,20 @@ public class MyJdbcController {
         this.myJdbc = myJdbc;
     }
 
-    @GetMapping("/get")
-    public R get(){
+    @GetMapping("/queryAll")
+    public R queryAll() {
         String sql = "select * from user where status = ?";
         Object[] args = {RecordStatus.EXISTS.getVal()};
-        List<User> lists = myJdbc.query(User.class, sql, args);
-        return R.success(lists);
+//        List<User> users = myJdbc.query(User.class, sql, args);
+        List<Map<String, Object>> users = myJdbc.queryForMap(sql, args);
+        return R.success(users);
     }
-    
 
-//    @GetMapping("/getAll")
-//    public R getAll(){
-//        String sql = "";
-//        Object[] args = { "abc", "dee", }
-//    }
+    @GetMapping("/pageQuery")
+    public R testPageQuery() {
+        String sql = "select * from user where status = ? ";
+        Object[] args = {RecordStatus.EXISTS.getVal()};
+        PageModel<User> pageModel = myJdbc.pageQuery(User.class, sql, 1, 2, args);
+        return R.success(pageModel);
+    }
 }
