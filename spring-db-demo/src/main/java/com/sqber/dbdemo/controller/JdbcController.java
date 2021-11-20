@@ -6,6 +6,7 @@ import com.sqber.commonWeb.R;
 import com.sqber.dbdemo.myenum.RecordStatus;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.ParameterizedPreparedStatementSetter;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.util.StringUtils;
@@ -15,7 +16,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.sqber.dbdemo.model.User;
 
+import java.awt.*;
 import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
@@ -46,15 +49,7 @@ public class JdbcController {
     // 这个抽离一个
     //public <T> List<T> query(String sql, Object[] args, Class<T> type);
 
-    @GetMapping("/t1my")
-    public R t1my() {
-        String sql = "select * from user where status = ?";
-        Object[] args = {RecordStatus.EXISTS.getVal()};
-        List<User> users = myJdbc.query(User.class, sql, args);
-        List<Map<String, Object>> map = myJdbc.queryForMap(sql, args);
 
-        return R.success(users);
-    }
 
 
     // query：分页查询（我们可以对查询进一步封装）
@@ -77,12 +72,24 @@ public class JdbcController {
         return new PageModel(list, count, pageIndex, pageSize);
     }
 
+    @GetMapping("/pageQuerymy")
+    public R testPageQueryMy() {
+        String sql = "select * from user where status = ? ";
+        Object[] args = {RecordStatus.EXISTS.getVal()};
+        PageModel<User> pageModel = myJdbc.pageQuery(User.class, sql, 1, 3, args);
+        return R.success(pageModel);
+    }
+
     // query：根据 id 查询
     @GetMapping("getById")
     public R getById(int id) {
         String sql = "select * from user where status = ? and id = ?";
         Object[] args = new Object[]{RecordStatus.EXISTS.getVal(), id};
         List<User> users = jdbcTemplate.query(sql, args, BeanPropertyRowMapper.newInstance(User.class));
+
+        List<User> users2 = myJdbc.query(User.class, sql, args);
+        System.out.println(users2.equals(users));
+
         return R.success(users);
     }
     // query：根据某列查询（根据 userCode 查询）(和上面的根据 id 查询类似)
@@ -93,6 +100,9 @@ public class JdbcController {
         String sql = "select count(*) from user where status = ?";
         Object[] args = {RecordStatus.EXISTS.getVal()};
         Long count = this.jdbcTemplate.queryForObject(sql, args, Long.class);
+
+        Long count2 = myJdbc.count(sql, args);
+
         return R.success(count);
     }
 
@@ -115,6 +125,14 @@ public class JdbcController {
         long rowId = keyHolder.getKey().longValue();
 
         return R.success(rowId);
+    }
+
+    @GetMapping("addmy")
+    public R addmy() {
+        String sql = "insert into user (userCode,userName) values(?,?)";
+        Object[] args = {"Rob", "肉搏"};
+        long id = myJdbc.add(sql, args);
+        return R.success(id);
     }
 
     // update：更新
@@ -172,6 +190,17 @@ public class JdbcController {
         list.add(new Object[]{"tom7", "tom7"});
 
         executeBatch(sql, list);
+
+        jdbcTemplate.batchUpdate(sql, list, 2, new ParameterizedPreparedStatementSetter<Object[]>() {
+            @Override
+            public void setValues(PreparedStatement ps, Object[] args) throws SQLException {
+                if (args != null) {
+                    for (int i = 0; i < args.length; i++) {
+                        ps.setObject(i + 1, args[i] == null ? "" : args[i]);
+                    }
+                }
+            }
+        });
 
         return R.success();
     }
