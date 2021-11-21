@@ -11,7 +11,7 @@ public interface MyJdbc {
 //    public static final String DRIVER_MYSQL = "com.mysql.jdbc.Driver";
 //    public static final String DRIVER_MYSQL8 = "com.mysql.cj.jdbc.Driver";
     public static final String DRIVER_MYSQL = "MySQL Connector/J";
-    public static final String DRIVER_POSTGRE = "org.postgresql.Driver";
+    public static final String DRIVER_POSTGRE = "PostgreSQL JDBC Driver";
 
     <T> List<T> query(Class<T> type, String sql, @Nullable Object... args);
 
