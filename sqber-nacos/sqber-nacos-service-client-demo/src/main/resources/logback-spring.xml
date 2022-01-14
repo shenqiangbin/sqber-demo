@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <!-- 文件输出格式 -->
+    <property name="PATTERN" value="%-12(%d{yyyy-MM-dd HH:mm:ss.SSS}) |-%-5level [%thread] %c [%L] -| %msg%n" />
+    <property name="HPATTERN" value="%d{yyyy-MM-dd HH:mm:ss.SSS} [%cyan(%thread)] [%highlight(%-5level)] [%green(%-37.37logger{36})]: %msg%n" />
+    <property name="HDPATTERN" value="%d{HH:mm:ss.SSS} [%cyan(%thread)] [%highlight(%-5level)] [%green(%-37.37logger{36})]: %msg%n" />
+
+    <property name="TEST_FILE_PATH" value="./zlog/log4j-demo/file.log" />
+
+    <property name="serverName" value="127.0.0.1" />
+    <property name="port" value="3306" />
+    <property name="dbName" value="logdb" />
+    <property name="user" value="root" />
+    <property name="password" value="123456" />
+
+    <!-- 开发环境 -->
+    <springProfile name="dev">
+        <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+            <encoder>
+                <pattern>${HDPATTERN}</pattern>
+            </encoder>
+        </appender>
+
+        <logger name="com.sqber" level="debug" />
+
+        <root level="info">
+            <appender-ref ref="CONSOLE" />
+        </root>
+    </springProfile>
+
+
+    <!-- 测试环境 -->
+    <springProfile name="test">
+
+        <!-- 每天产生一个文件 -->
+        <appender name="TEST-FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+            <!-- 文件路径 -->
+            <file>${TEST_FILE_PATH}</file>
+            <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+                <!-- 文件名称 -->
+                <fileNamePattern>${TEST_FILE_PATH}/%d{yyyy-MM,aux}/%d{yyyy-MM-dd}.log</fileNamePattern>
+                <!-- 文件最大保存历史数量 -->
+                <MaxHistory>100</MaxHistory>
+                <totalSizeCap>1GB</totalSizeCap>
+            </rollingPolicy>
+            <layout class="ch.qos.logback.classic.PatternLayout">
+                <pattern>${PATTERN}</pattern>
+            </layout>
+        </appender>
+
+        <appender name="DB" class="ch.qos.logback.classic.db.DBAppender">
+            <connectionSource class="ch.qos.logback.core.db.DataSourceConnectionSource">
+                <dataSource class="com.mysql.jdbc.jdbc2.optional.MysqlDataSource">
+                    <serverName>${serverName}</serverName>
+                    <port>${port}</port>
+                    <databaseName>${dbName}</databaseName>
+                    <user>${user}</user>
+                    <password>${password}</password>
+                </dataSource>
+            </connectionSource>
+        </appender>
+
+        <root level="info">
+            <appender-ref ref="TEST-FILE" />
+            <appender-ref ref="DB" />
+        </root>
+    </springProfile>
+
+
+</configuration>

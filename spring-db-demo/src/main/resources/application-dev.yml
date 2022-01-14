@@ -1,0 +1,15 @@
+server:
+  port: 8888
+
+spring:
+  datasource:
+    userdb:
+      JdbcUrl: jdbc:mysql://127.0.0.1:3306/template?useSSL=false&serverTimezone=Asia/Shanghai&allowMultiQueries=true
+      DriverClassName: com.mysql.cj.jdbc.Driver
+      username: root
+      password: 123456
+    datadb:
+      JdbcUrl: jdbc:postgresql://127.0.0.1:5432/postgres?currentSchema=fly
+      DriverClassName: org.postgresql.Driver
+      Username: postgres
+      Password: 123456
