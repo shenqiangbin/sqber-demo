@@ -50,4 +50,14 @@ public class ResourceRepository {
         return pageModel;
     }
 
+    public long add(Resource model) {
+        String sql = String.format(
+                "insert resource (`name`, `category`, `requestUrl`, `apis`, " +
+                        "`status`, `createUser`, `createTime`) values(%s)",
+                MyJdbc.args(7));
+        Object[] args = {
+                model.getName(), model.getCategory(), model.getRequestUrl(), model.getApis(),
+                model.getStatus(), model.getCreateUser(), model.getCreateTime()};
+        return myJdbc.add(sql, args);
+    }
 }

@@ -13,6 +13,14 @@ public interface MyJdbc {
     String DRIVER_MYSQL = "MySQL Connector/J";
     String DRIVER_POSTGRE = "PostgreSQL JDBC Driver";
 
+    static String args(int size) {
+        String[] arr = new String[size];
+        for (int i = 0; i < size; i++) {
+            arr[i] = "?";
+        }
+        return String.join(",", arr);
+    }
+
     static Long count(int[][] batch) {
         AtomicLong count = new AtomicLong();
         Arrays.stream(batch).forEach(item ->

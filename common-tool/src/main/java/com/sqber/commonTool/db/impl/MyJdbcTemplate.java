@@ -103,6 +103,7 @@ public class MyJdbcTemplate implements MyJdbc {
             PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             if (args != null) {
                 for (int i = 0; i < args.length; i++) {
+                    // 如果因类型不是字符串而报错，建议赋个默认值，而不是修改这个的代码。
                     ps.setObject(i + 1, args[i] == null ? "" : args[i]);
                 }
             }

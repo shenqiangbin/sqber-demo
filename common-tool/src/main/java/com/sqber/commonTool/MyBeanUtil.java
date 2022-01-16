@@ -8,6 +8,12 @@ import java.util.List;
 
 public class MyBeanUtil {
 
+    public static <T> T trans(Object source, Class<T> clazz) {
+        T t = BeanUtils.instantiateClass(clazz);
+        trans(source, t);
+        return t;
+    }
+
     public static <T> List<T> trans(List list, Class<T> clazz) {
         ArrayList result = new ArrayList();
         for (Object item : list) {
