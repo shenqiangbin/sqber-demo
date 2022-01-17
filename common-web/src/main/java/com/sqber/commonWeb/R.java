@@ -2,13 +2,12 @@ package com.sqber.commonWeb;
 
 /**
  * 统一结果类
- *
  */
 public class R {
 
-    private static final int SUCCESS = 200;
-    private static final int ERROR = 500;
-    private static final int ValidateFailure = 410;
+    private static final int SUCCESS = 0;
+    private static final int ERROR = 1;
+    private static final int ValidateFailure = 2;
 
     private int code;
     private Object data;

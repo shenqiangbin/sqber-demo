@@ -1,11 +1,13 @@
 package com.sqber.dbdemo.controller;
 
 import com.sqber.commonTool.MyBeanUtil;
+import com.sqber.commonTool.db.MyJdbc;
 import com.sqber.commonTool.db.model.PageModel;
 import com.sqber.commonWeb.R;
 import com.sqber.dbdemo.model.Resource;
 import com.sqber.dbdemo.model.request.ResourceAddRequest;
 import com.sqber.dbdemo.model.request.ResourcePageRequest;
+import com.sqber.dbdemo.model.request.ResourceSaveRequest;
 import com.sqber.dbdemo.model.response.ResourcePageResponse;
 import com.sqber.dbdemo.service.ResourceService;
 import lombok.extern.slf4j.Slf4j;
@@ -16,6 +18,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
+import javax.validation.constraints.NotBlank;
+import java.util.Arrays;
 
 @RestController
 @RequestMapping("resource")
@@ -45,19 +49,19 @@ public class ResourceController {
         log.error("the id is :", id);
         return R.success(id);
     }
-//
-//    @PostMapping("save")
-//    public R save(@Valid MenuSaveRequest request) throws IOException {
-//        Menu menu = BeanUtils.trans(request, Menu.class);
-//        menuService.save(menu);
-//        return R.success();
-//    }
-//
-//    @PostMapping("remove")
-//    public R save(@NotBlank(message = "ids不能为空") String ids) throws IOException {
-//        String[] split = ids.split(",");
-//        int[] intIds = Arrays.stream(split).mapToInt(Integer::parseInt).toArray();
-//        menuService.remove(intIds);
-//        return R.success();
-//    }
+
+    @PostMapping("save")
+    public R save(@Valid ResourceSaveRequest request) {
+        resourceService.save(request);
+        return R.success();
+    }
+
+    @PostMapping("remove")
+    public R save(@NotBlank(message = "ids不能为空") String ids) {
+        String[] split = ids.split(",");
+        int[] intIds = Arrays.stream(split).mapToInt(Integer::parseInt).toArray();
+        long affect = resourceService.remove(intIds);
+
+        return R.success(affect);
+    }
 }

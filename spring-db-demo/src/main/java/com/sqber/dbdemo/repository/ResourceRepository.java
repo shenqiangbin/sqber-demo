@@ -60,4 +60,22 @@ public class ResourceRepository {
                 model.getStatus(), model.getCreateUser(), model.getCreateTime()};
         return myJdbc.add(sql, args);
     }
+
+    public void save(Resource model) {
+        String sql = "update resource set name = ?,category=?,requestUrl=?,apis=?,modifyTime=?,modifyUser=? where id =?";
+        Object[] args = {model.getName(), model.getCategory(), model.getRequestUrl(), model.getApis(),
+                model.getModifyTime(), model.getModifyUser(), model.getId()};
+        myJdbc.update(sql, args);
+    }
+
+    public long remove(int[] ids) {
+        List<Object[]> batchArgs = new ArrayList<>();
+        for (int id : ids) {
+            batchArgs.add(new Object[]{RecordStatus.DELETED.getVal(), id});
+        }
+        String sql = "update resource set status = ? where id = ?";
+
+        int[][] result = myJdbc.batch(sql, batchArgs, 1000);
+        return MyJdbc.count(result);
+    }
 }
