@@ -36,7 +36,7 @@ public class CommonExcel {
     }
 
     private String filePath;
-    private boolean isExcel2003;
+    //private boolean isExcel2003;
     private Workbook wb = null;
     private IResultHandler resultHandler;
     private boolean debug = false;
@@ -51,7 +51,7 @@ public class CommonExcel {
         if (this.firstRowHeader && firstRow.length == 0) {
             throw new RuntimeException("firstRow不能为空");
         }
-        isExcel2003 = filePath.matches("^.+\\.(?i)(xls)$");
+        //isExcel2003 = filePath.matches("^.+\\.(?i)(xls)$");
     }
 
     public void enableDebug() {
