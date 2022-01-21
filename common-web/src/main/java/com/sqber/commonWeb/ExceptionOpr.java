@@ -44,6 +44,6 @@ public class ExceptionOpr {
             return R.warn(e.getMessage());
         }
 
-        return R.error(e.getMessage());
+        return R.error(e.toString());
     }
 }

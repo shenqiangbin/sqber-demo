@@ -1,6 +1,7 @@
 package com.sqber.dbdemo.controller;
 
 import com.sqber.commonTool.ListUtil;
+import com.sqber.commonTool.excel.CommonCSV;
 import com.sqber.commonTool.excel.CommonExcel;
 import com.sqber.commonTool.excel.SaveResult;
 import com.sqber.commonTool.myenum.IEnum;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.io.IOException;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -120,4 +122,36 @@ public class DefaultController {
                 });
     }
 
+
+    @GetMapping("/testCsvFile")
+    public R testCsvFile() throws IOException {
+
+        String filePath = Paths.get(System.getProperty("user.dir"), "/spring-db-demo/test.csv").toString();
+        CommonCSV commonCSV = new CommonCSV(filePath, false, null, "utf-8");
+        SaveResult saveResult = commonCSV.handle();
+
+        if (!saveResult.isSuccess()) {
+            return R.warn(saveResult.getMsg());
+        }
+
+        List<List<String>> data = saveResult.getData();
+        return R.success(data);
+
+    }
+
+    @GetMapping("/testCsvFile2")
+    public R testCsvFile2() throws IOException {
+
+        String filePath = Paths.get(System.getProperty("user.dir"), "/spring-db-demo/test2.csv").toString();
+        CommonCSV commonCSV = CommonCSV.create(filePath, new String[]{"姓名", "年龄", "学校"}, "utf-8");
+        SaveResult saveResult = commonCSV.handle();
+
+        if (!saveResult.isSuccess()) {
+            return R.warn(saveResult.getMsg());
+        }
+
+        List<List<String>> data = saveResult.getData();
+        return R.success(data);
+
+    }
 }
