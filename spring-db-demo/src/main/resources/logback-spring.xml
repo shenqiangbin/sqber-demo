@@ -2,7 +2,9 @@
 <configuration>
     <!-- 文件输出格式 -->
     <property name="PATTERN" value="%-12(%d{yyyy-MM-dd HH:mm:ss.SSS}) |-%-5level [%thread] %c [%L] -| %msg%n" />
-    <property name="HPATTERN" value="%d{yyyy-MM-dd HH:mm:ss.SSS} [%cyan(%thread)] [%highlight(%-5level)] [%green(%-37.37logger{36})]: %msg%n" />
+<!--    <property name="HPATTERN" value="%d{yyyy-MM-dd HH:mm:ss.SSS} [%cyan(%thread)] [%highlight(%-5level)] [%green(%-37.37logger{36})]: %msg%n" />-->
+    <property name="HPATTERN" value="%d{yyyy-MM-dd HH:mm:ss.SSS} [%cyan(%thread)] [%highlight(%-5level)] [%green(%-37.37logger{36})].[%M][%L]: %msg%n " />
+
     <property name="HDPATTERN" value="%d{HH:mm:ss.SSS} [%cyan(%thread)] [%highlight(%-5level)] [%green(%-37.37logger{36})]: %msg%n" />
 
     <property name="TEST_FILE_PATH" value="./zlog/log4j-demo/file.log" />
