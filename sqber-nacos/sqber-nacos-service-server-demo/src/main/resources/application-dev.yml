@@ -5,11 +5,9 @@ spring:
 server:
   port: 7888
 
-
-
 nacos:
   discovery:
-    server-addr: 127.0.0.1:8848
+    server-addr: 192.168.52.65:8848
 
 
 

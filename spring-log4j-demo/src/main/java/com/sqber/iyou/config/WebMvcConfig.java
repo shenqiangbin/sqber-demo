@@ -1,4 +1,4 @@
-package com.sqber.log4jdemo.config;
+package com.sqber.iyou.config;
 
 
 import org.springframework.beans.factory.annotation.Autowired;

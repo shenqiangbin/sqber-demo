@@ -1,4 +1,4 @@
-package com.sqber.log4jdemo.model;
+package com.sqber.iyou.model;
 
 public class SaleModel {
     private String area;

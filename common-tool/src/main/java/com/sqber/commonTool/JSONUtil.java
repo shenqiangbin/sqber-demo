@@ -1,9 +1,11 @@
 package com.sqber.commonTool;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.IOException;
+import java.util.List;
 
 public class JSONUtil {
 
@@ -17,13 +19,20 @@ public class JSONUtil {
         return mapper.readValue(content, valueType);
     }
 
-    public static String filterJson(String enumStr){
-        enumStr = enumStr.replace("“","\"");
-        enumStr = enumStr.replace("：",":");
-        enumStr = enumStr.replace("<br/>","");
-        enumStr = enumStr.replace("\\\"","\"");
-        enumStr = enumStr.replace("\n","");
-        enumStr = enumStr.replace("\",,\"","\",\"");
+    public static List<Object> toListObject(String content) throws IOException {
+        ObjectMapper mapper = new ObjectMapper();
+        return mapper.readValue(content, new TypeReference<List<Object>>() {
+        });
+
+    }
+
+    public static String filterJson(String enumStr) {
+        enumStr = enumStr.replace("“", "\"");
+        enumStr = enumStr.replace("：", ":");
+        enumStr = enumStr.replace("<br/>", "");
+        enumStr = enumStr.replace("\\\"", "\"");
+        enumStr = enumStr.replace("\n", "");
+        enumStr = enumStr.replace("\",,\"", "\",\"");
         return enumStr;
     }
 

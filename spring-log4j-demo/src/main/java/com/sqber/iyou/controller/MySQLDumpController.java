@@ -1,4 +1,4 @@
-package com.sqber.log4jdemo.controller;
+package com.sqber.iyou.controller;
 
 import com.sqber.commonTool.CmdUtil;
 import org.slf4j.Logger;

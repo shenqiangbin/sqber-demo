@@ -1,0 +1,16 @@
+server:
+  port: 8889
+
+time:
+  hour: 0
+  minute: 38
+quan:
+  number: 5
+adb:
+  path: /Users/adminqian/my/platform-tools/adb
+  server: 127.0.0.1:5555 # 127.0.0.1:7555 windows
+  server2: 127.0.0.1:5555
+btn:
+  middle: "405.5  211.8" # 线上优惠券按钮位置
+  left: "124.5  211.8" # 线上优惠券按钮位置
+  quan: "699  346.7,699  575.5,699  807.4,699  1039,699  1240"

@@ -21,6 +21,7 @@ public class DefaultController {
         return "server index";
     }
 
+    @GetMapping("/test")
     public String test(String serviceName) throws NacosException {
         List<Instance> allInstances = namingService.getAllInstances(serviceName);
         return "ok";

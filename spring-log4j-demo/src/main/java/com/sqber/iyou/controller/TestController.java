@@ -1,14 +1,9 @@
-package com.sqber.log4jdemo.controller;
+package com.sqber.iyou.controller;
 
-import com.sqber.commonTool.SignUtil;
 import com.sqber.commonWeb.R;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.util.HashMap;
-import java.util.Map;
 
 @RestController
 @RequestMapping("/share/v1")

@@ -1,11 +1,10 @@
-package com.sqber.log4jdemo.config;
+package com.sqber.iyou.config;
 
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.Part;
 import javax.xml.bind.ValidationException;
 import java.util.*;
 import java.util.stream.Collectors;
