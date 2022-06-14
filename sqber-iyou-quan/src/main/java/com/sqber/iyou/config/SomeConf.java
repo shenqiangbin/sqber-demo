@@ -14,7 +14,7 @@ public class SomeConf {
     private int minute;
 
     @Value("${quan.number}")
-    private int quanNumber;
+    private String quanNumber;
 
     @Value("${adb.path}")
     private String adbPath;
@@ -50,11 +50,11 @@ public class SomeConf {
         this.minute = minute;
     }
 
-    public int getQuanNumber() {
+    public String getQuanNumber() {
         return quanNumber;
     }
 
-    public void setQuanNumber(int quanNumber) {
+    public void setQuanNumber(String quanNumber) {
         this.quanNumber = quanNumber;
     }
 

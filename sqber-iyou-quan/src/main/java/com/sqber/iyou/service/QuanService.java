@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.util.*;
+import java.util.stream.Collectors;
 
 @Service
 public class QuanService {
@@ -68,7 +69,7 @@ public class QuanService {
         click(leftButton);
 
 
-        String[] objects = someConf.getQuanBtn().split(",");
+        String[] btns = someConf.getQuanBtn().split(",");
         String q1 = someConf.getAdbPath() + " shell input tap 699  346.7";
         String q2 = someConf.getAdbPath() + " shell input tap 699  575.5";
         String q3 = someConf.getAdbPath() + " shell input tap 699  807.4";
@@ -82,14 +83,27 @@ public class QuanService {
 //                                quanNumber == 3 ? q3 :
 //                                        quanNumber == 4 ? q4 :
 //                                                quanNumber == 5 ? q5 : "";
-        String str = someConf.getAdbPath() + " -s " + someConf.getServer2() + " shell input tap " +
-                objects[someConf.getQuanNumber()-1];
-        System.out.println(str);
+        String[] quanNumList = someConf.getQuanNumber().split(",");
+        List<String> cmdList = getCmdList(quanNumList, btns);
 
         for (int i = 0; i < 20; i++) {
             System.out.println("click-" + DateUtil.format(new Date()));
-            click(str);
+            click(cmdList);
             Thread.sleep(10);
+        }
+    }
+
+    private List<String> getCmdList(String[] quanNumList, String[] btns) {
+        return Arrays.stream(quanNumList).map(num ->
+                someConf.getAdbPath() + " -s " + someConf.getServer2() + " shell input tap " +
+                        btns[Integer.parseInt(num) - 1]
+        ).collect(Collectors.toList());
+
+    }
+
+    public void click(List<String> cmdList) throws IOException, InterruptedException {
+        for (String cmd : cmdList) {
+            click(cmd);
         }
     }
 
@@ -100,6 +114,7 @@ public class QuanService {
             }
         });
     }
+
 
     public void connect() throws IOException, InterruptedException {
         String cmd = someConf.getAdbPath() + " connect " + someConf.getServer();
