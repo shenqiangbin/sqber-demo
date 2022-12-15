@@ -1,2 +1,13 @@
 server:
   port: 8889
+
+minio:
+  endpoint: http://192.168.52.63:9000/
+  accesskey: minio
+  secretKey: ABCDabcd1234@
+
+spring:
+  servlet:
+    multipart:
+      max-file-size: 500MB
+      max-request-size: 500MB
