@@ -1,6 +1,5 @@
 */target/
 !.mvn/wrapper/maven-wrapper.jar
-/cnki-dianzi-demo
 
 ### STS ###
 .apt_generated
