@@ -1,8 +1,23 @@
 package com.sqber.dianzi.result;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
-public class DsLoginResult extends DsBaseResult {
+@Data
+@Getter
+@Setter
+public class DsLoginResult {
+
+    @JsonProperty("Success")
+    private boolean success;
+
+    @JsonProperty("Code")
+    private Integer code;
+
+    @JsonProperty("Message")
+    private String message;
 
     @JsonProperty("IdenId")
     private String idenId;
@@ -19,43 +34,7 @@ public class DsLoginResult extends DsBaseResult {
     @JsonProperty("InstShowName")
     private String instShowName;
 
-    public String getIdenId() {
-        return idenId;
-    }
+    @JsonProperty("MemberLoginLimit")
+    private Integer memberLoginLimit;
 
-    public void setIdenId(String idenId) {
-        this.idenId = idenId;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public String getPersonUserName() {
-        return personUserName;
-    }
-
-    public void setPersonUserName(String personUserName) {
-        this.personUserName = personUserName;
-    }
-
-    public String getInstUserName() {
-        return instUserName;
-    }
-
-    public void setInstUserName(String instUserName) {
-        this.instUserName = instUserName;
-    }
-
-    public String getInstShowName() {
-        return instShowName;
-    }
-
-    public void setInstShowName(String instShowName) {
-        this.instShowName = instShowName;
-    }
 }

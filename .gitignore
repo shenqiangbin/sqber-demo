@@ -29,3 +29,6 @@ bdmsCommon/bin/
 ### VSCode
 .history
 .vscode
+sqber-nacos/sqber-nacos-service-client-demo/target/
+sqber-nacos/sqber-nacos-service-server-demo/target/
+*.zip

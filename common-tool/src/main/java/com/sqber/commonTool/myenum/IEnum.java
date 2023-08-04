@@ -14,4 +14,6 @@ public interface IEnum {
         throw new RuntimeException("没有对应的数值[" + clazz.toString() + ":" + String.valueOf(value) + "]");
     }
 
+
+
 }

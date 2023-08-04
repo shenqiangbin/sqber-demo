@@ -6,6 +6,11 @@ minio:
   accesskey: minio
   secretKey: ABCDabcd1234@
 
+kafka:
+  zookeeper: zookeeper.kafka.com:1081
+  #broker: 192.168.20.154:30861
+  broker: k8s-master:18001
+
 spring:
   servlet:
     multipart:

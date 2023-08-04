@@ -13,6 +13,8 @@
     <artifactId>spring-db-demo</artifactId>
     <packaging>jar</packaging>
 
+
+
     <dependencies>
 
         <dependency>
@@ -48,6 +50,7 @@
             <artifactId>postgresql</artifactId>
             <scope>runtime</scope>
         </dependency>
+
 
     </dependencies>
 

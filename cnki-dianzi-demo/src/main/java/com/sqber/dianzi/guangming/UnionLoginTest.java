@@ -19,10 +19,10 @@ public class UnionLoginTest {
     private static void login() throws IOException {
 
         LoginInfoModel model = new LoginInfoModel();
-        model.setKey("key"); // 向商务要（这个记在了 oneNote）
-        model.setUserName("name"); // 向商务要（这个记在了 oneNote）
-        model.setUserIp("101.224.1.247"); // 必须是上海的 IP
-        model.setUserReturnUrl("https://shipin.cnki.net/");
+        model.setKey(""); // 向商务要（这个记在了 oneNote）
+        model.setUserName("yj2023"); // 向商务要（这个记在了 oneNote）
+        model.setUserIp("124.193.98.154"); //
+        model.setUserReturnUrl("https://www.cnki.net/");
         String json = JSONUtil.toString(model);
 
         String url = "https://my.cnki.net/IntegrateLogin/api/IntegrateLoginApi/UserLogin";
